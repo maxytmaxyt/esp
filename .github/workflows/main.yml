@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch: # Allows manual trigger from the UI
+  workflow_dispatch:
 
 jobs:
   build:
@@ -30,7 +30,7 @@ jobs:
         with:
           path: ~/.platformio
           key: ${{ runner.os }}-platformio
-        
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -48,6 +48,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: esp32-repeater-firmware
-          # PlatformIO builds the binary in this specific directory
           path: .pio/build/nodemcu-32s/firmware.bin
           if-no-files-found: error
